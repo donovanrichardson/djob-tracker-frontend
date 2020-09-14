@@ -12,14 +12,16 @@ You are **responsible** for scheduling time with your squad to seek approval for
 
 |  Day | Deliverable | Status
 |---|---| ---|
-|Monday 14| Add user restrictions to backend | Incomplete
-|Monday 14| Start basic front end | Incomplete
-|Tuesday 15| Continue frontend, add Login | Incomplete
-|Wednesday 16| Continue frontend, CSS | Incomplete
-|Thursday 17| Add location filter and rating to front end | Incomplete
+|Monday 14| Start basic CRUD on front end | Incomplete
+|Tuesday 15| add Login to front end | Incomplete
+|Tuesday 15| do Front End tables | Incomplete
+|Wednesday 16| finish MVP CRUD to front end | Incomplete
+|Wednesday 16| Css on front end | Incomplete
+|Thursday 17| Add location filter| Incomplete
+|Thursday 17| Add location rating | Incomplete
 |Friday 18| *Debugging* finish MVP | Incomplete
-|Weekend (19,20)| Add Indeed and Linkedin integration, auto gen of keywords| Incomplete
-|Monday 21| Add Sublocations, finish up | Incomplete
+|Weekend (19,20)| Add Indeed and Linkedin integration| Incomplete
+|Monday 21| Add Sublocations to front end| Incomplete
 
 ## Project Description
 
@@ -32,7 +34,7 @@ A Job Tracker app that allows users to login, add jobs listings (including job t
 
 ## Time/Priority Matrix 
 
-[Google Doc](https://docs.google.com/presentation/d/1rycwZD5kk4BVoueygvBN-j5h12f4KutEqMEDGxAW0eE/edit?usp=sharing)
+[Google Doc](https://docs.google.com/presentation/d/1XqKOAY34FzvfZdhBOpUVveqaAXCVjm9AFWnWn6pj6k8/edit?usp=sharing)
 
 ## MVP/PostMVP - 5min
 
@@ -48,7 +50,7 @@ Time frames are also key in the development cycle.  You have limited time to cod
 | --- | :---: |  :---: | :---: | :---: |
 |Job Create Read Delete|H|2hr| -hr | -hr|
 |Update Job|H|1hr| -hr | -hr|
-|Filter Jobs by Location|M|2hr| -hr | -hr|
+|Filter Jobs by Location(Frontend)|M|2hr| -hr | -hr|
 |Rate Locations|M|1hr| -hr | -hr|
 |Locations and Jobs tied to user|H|4hr| -hr | -hr|
 | Front end Login | H | 2hr | -hr | -hr|
@@ -59,11 +61,11 @@ Time frames are also key in the development cycle.  You have limited time to cod
 | Component | Priority | Estimated Time | Time Invetsted | Actual Time |
 | --- | :---: |  :---: | :---: | :---: |
 |Indeed and Linkedin Integration(frontend)|M|6hr| -hr | -hr|
-|Sublocations|L|4hr| -hr | -hr|
+|Sublocations(front end CRUD)|L|2hr| -hr | -hr|
 |Keyword generation based on documents|L|4hr| -hr | -hr|
 
 ## Additional Libraries
- Use this section to list all supporting libraries and thier role in the project. 
+If I do the LinkedIn and Indeed integration, I plan on using the Cheerio npm package on the front end to grab text from job listing webpages.
 
 ## Code Snippet
 

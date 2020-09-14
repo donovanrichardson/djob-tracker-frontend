@@ -1,3 +1,7 @@
+# Job Tracker Frontend
+
+Click [here](https://jobsearchtracker.netlify.app) for the live app.
+
 # This VUE Template
 
 ## Setup

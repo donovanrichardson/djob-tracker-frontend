@@ -1,26 +1,24 @@
 <template>
-  <p id="test"><button :class="{red:theColor}" v-on:click="theClick">Text</button></p>
+  <div id="app">
+    <div id="nav">
+      <Header/>
+
+      
+    </div>
+    <router-view/>
+    <Footer/>
+  </div>
 </template>
 
 <script>
-// import Header from './components/Header'
-// import Footer from './components/Footer'
+import Header from './components/Header'
+import Footer from './components/Footer'
 
 export default {
   name: 'App',
   components: {
-    // Header,
-    // Footer
-  },
-  data:function(){
-    return {
-      theColor: false
-    }
-  },
-  methods:{
-    theClick: function(){
-      this.theColor = ! this.theColor
-    }
+    Header,
+    Footer
   }
   
 }
@@ -47,17 +45,4 @@ export default {
 #nav a.router-link-exact-active {
   color: #42b983;
 }
-
-.red{
-  color:red;
-}
-
-#test{
-  text-align: center;
-}
-
-
-
-
-
 </style>

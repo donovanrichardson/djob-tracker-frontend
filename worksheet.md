@@ -12,7 +12,7 @@ You are **responsible** for scheduling time with your squad to seek approval for
 
 |  Day | Deliverable | Status
 |---|---| ---|
-|Monday 14| Start basic CRUD on front end | Incomplete
+|Monday 14| Start basic CRUD on front end | Complete
 |Tuesday 15| add Login to front end | Incomplete
 |Tuesday 15| do Front End tables | Incomplete
 |Wednesday 16| finish MVP CRUD to front end | Incomplete
@@ -48,7 +48,7 @@ Time frames are also key in the development cycle.  You have limited time to cod
 #### MVP
 | Component | Priority | Estimated Time | Time Invetsted | Actual Time |
 | --- | :---: |  :---: | :---: | :---: |
-|Job Create Read Delete|H|2hr| -hr | -hr|
+|Job Create Read Delete|H|2hr| 2hr | -hr|
 |Update Job|H|1hr| -hr | -hr|
 |Filter Jobs by Location(Frontend)|M|2hr| -hr | -hr|
 |Rate Locations|M|1hr| -hr | -hr|

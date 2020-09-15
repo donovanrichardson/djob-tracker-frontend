@@ -1,23 +1,31 @@
 <template>
   <!-- <p id="test"><button :class="{red:theColor}" v-on:click="theClick">Text</button></p> -->
-  <div class='form-inputs'>
-    <input v-model="title" placeholder="title" id="title"/>
-    <input v-model="company" placeholder="company" id="company"/>
-    <input v-model="description" placeholder="description" id="description"/>
-    <input v-model="url" placeholder="url" id="url"/>
-    <input v-model="location" placeholder="location" id="location"/>
-    <button v-on:click="postJob">Add Job</button>
+  <div>
+    <div class="login">
+      <input v-model="username" placeholder="username" id="username"/>
+      <input v-model="password" type="password" placeholder="password" id="password"/>
+      <button v-on:click="login">Login</button>
+    </div>
+    <div class='form-inputs'>
+      <input v-model="title" placeholder="title" id="title"/>
+      <input v-model="company" placeholder="company" id="company"/>
+      <input v-model="description" placeholder="description" id="description"/>
+      <input v-model="url" placeholder="url" id="url"/>
+      <input v-model="location" placeholder="location" id="location"/>
+      <button v-on:click="postJob">Add Job</button>
+    </div>
   </div>
+
 </template>
 
 <script>
 // import Header from './components/Header'
 // import Footer from './components/Footer'
 const axios = require('axios').default
-const getJobs = async ()=>{
+const getJobs = async (jwt)=>{
   const theResponse = await axios.get("http://127.0.0.1:8000/api/job/",{
       headers:{
-        Authorization:"JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6ImRvbm92YW4iLCJleHAiOjE2MDAxMzQzMjcsImVtYWlsIjoiZG9ub3ZhbnNwcWFAZ21haWwuY29tIn0.hxmgkBLd0LZva2-4PAUqpoYQA45txEqrqbmo_kb5d4o"
+        Authorization:`JWT ${jwt}`
       }
     })
 
@@ -31,7 +39,7 @@ export default {
     // Footer
   },
   async created(){
-    const theJobs = await getJobs()
+    const theJobs = await getJobs(this.token)
     this.jobs = theJobs
 
   },
@@ -43,7 +51,10 @@ export default {
       description: null,
       url: null,
       jobs:null,
-      location:null
+      location:null,
+      username:'',
+      password:'',
+      token:'',
     }
   },
   methods:{
@@ -61,11 +72,18 @@ export default {
       }
       await axios.post("http://127.0.0.1:8000/api/job/",params,
       {headers:{
-        Authorization:"JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6ImRvbm92YW4iLCJleHAiOjE2MDAxMzQzMjcsImVtYWlsIjoiZG9ub3ZhbnNwcWFAZ21haWwuY29tIn0.hxmgkBLd0LZva2-4PAUqpoYQA45txEqrqbmo_kb5d4o"
+        Authorization:`JWT ${this.token}`
       }
     })
-    this.jobs = await getJobs() //this doesn't get called i think
+    this.jobs = await getJobs(this.token) //this doesn't get called i think
     console.log('change the jobs')
+    },
+    async login(){
+      const response = await axios.post("http://127.0.0.1:8000/auth/users/login/",{username:this.username, password:this.password}
+    )
+    console.log(response);
+    this.token = response.data.token
+
     }
   }
   

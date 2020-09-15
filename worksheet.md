@@ -66,6 +66,8 @@ Time frames are also key in the development cycle.  You have limited time to cod
 
 ## Additional Libraries
 If I do the LinkedIn and Indeed integration, I plan on using the Cheerio npm package on the front end to grab text from job listing webpages.
+Vue
+Cheerio
 
 ## Code Snippet
 

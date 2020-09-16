@@ -28,8 +28,8 @@
         </thead>
         <tbody>
           <tr v-for="job in jobs" :key="job.id" :job="job.id">
-            <td>{{job.company}}</td>
             <td>{{job.title}}</td>
+            <td>{{job.company}}</td>
             <td>{{job.location}}</td>
             <td>{{job.keywords}}</td>
             <td ><Stars :stars="job.rating" v-on:rate="changeRating($event, job.id)"/></td>

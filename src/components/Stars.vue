@@ -32,7 +32,7 @@ export default {
       },
       setRating:function(event){
         //   console.log(event);
-          this.rating = Number(event.target.getAttribute("star"))
+          this.rating = Number(event.target.getAttribute("star")) + 1
           this.setHighlight()
           this.$emit("rate", this.rating)
         //   console.log(this.rating);
@@ -40,7 +40,7 @@ export default {
       setHighlight:function(){
           let i = 0
           let newHL = [false,false,false,false,false]
-          while(i < 5 && i <= this.rating){
+          while(i < 5 && i < this.rating){
             //   console.log(i);
               newHL[i] = true
               i++

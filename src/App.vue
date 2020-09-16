@@ -14,6 +14,27 @@
       <input v-model="location" placeholder="location" id="location"/>
       <button v-on:click="postJob">Add Job</button>
     </div>
+    <div>
+      <table>
+        <thead>
+          <tr>
+            <th>Job Title</th>
+            <th>Company</th>
+            <th>Location</th>
+            <th>Keywords</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="job in jobs" :key="job.id" :job="job.id">
+            <td>{{job.company}}</td>
+            <td>{{job.title}}</td>
+            <td>{{job.location}}</td>
+            <td>{{job.keywords}}</td>
+            <td> <button v-on:click="delJob">del</button> </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 
 </template>
@@ -75,7 +96,7 @@ export default {
         Authorization:`JWT ${this.token}`
       }
     })
-    this.jobs = await getJobs(this.token) //this doesn't get called i think
+    this.refresh() //this doesn't get called i think
     console.log('change the jobs')
     },
     async login(){
@@ -83,8 +104,23 @@ export default {
     )
     console.log(response);
     this.token = response.data.token
+    this.refresh()
 
-    }
+    },
+    async delJob(event){
+      console.log(event);
+      const jobId = event.target.parentElement.parentElement.getAttribute('job')
+      const response = await axios.delete(`http://127.0.0.1:8000/api/job/${jobId}/`,
+      {headers:{
+        Authorization:`JWT ${this.token}`
+      }})
+      console.log(response.data);
+      this.refresh()
+
+    },
+    async refresh(){
+      this.jobs = await getJobs(this.token)
+    },
   }
   
 }

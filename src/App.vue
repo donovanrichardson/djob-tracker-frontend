@@ -7,6 +7,7 @@
       <button v-on:click="login">Login</button>
     </div>
     <div class='form-inputs'>
+      <Stars :stars="title"/>
       <input v-model="title" placeholder="title" id="title"/>
       <input v-model="company" placeholder="company" id="company"/>
       <input v-model="description" placeholder="description" id="description"/>
@@ -22,6 +23,7 @@
             <th>Company</th>
             <th>Location</th>
             <th>Keywords</th>
+            <th>Rating</th>
           </tr>
         </thead>
         <tbody>
@@ -30,6 +32,7 @@
             <td>{{job.title}}</td>
             <td>{{job.location}}</td>
             <td>{{job.keywords}}</td>
+            <td ><Stars :stars="job.rating" v-on:rate="changeRating($event, job.id)"/></td>
             <td> <button v-on:click="delJob">del</button> </td>
           </tr>
         </tbody>
@@ -42,6 +45,7 @@
 <script>
 // import Header from './components/Header'
 // import Footer from './components/Footer'
+import Stars from './components/Stars'
 const axios = require('axios').default
 const getJobs = async (jwt)=>{
   const theResponse = await axios.get("http://127.0.0.1:8000/api/job/",{
@@ -56,7 +60,7 @@ const getJobs = async (jwt)=>{
 export default {
   name: 'App',
   components: {
-    // Header,
+    Stars,
     // Footer
   },
   async created(){
@@ -79,6 +83,9 @@ export default {
     }
   },
   methods:{
+    changeRating:function(theRating, job){
+      console.log(theRating, job);
+    },
     theClick: function(){
       this.theColor = ! this.theColor
     },

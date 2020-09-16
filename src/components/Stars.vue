@@ -1,4 +1,5 @@
 <template>
+
 <div>
     <p>{{this.rating}}</p>
     <button star=0 v-on:click='setRating' :class='{highlighted:highlight[0]}'>S</button>
@@ -43,7 +44,7 @@ export default {
               newHL[i] = true
               i++
           }
-          console.log(newHL);
+        //   console.log(newHL);
           this.highlight = newHL
       }
   }

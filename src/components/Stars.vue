@@ -15,9 +15,10 @@ export default {
   name: "Stars",
   props:["stars"],
   created(){
-      this.highlight = this.setHighlight()
-    //         console.log(this.highlight);
-    //   console.log(this.setHighlight);
+    //   this.highlight = this.setHighlight()
+            console.log(this.highlight);
+      console.log(this.setHighlight);
+      this.setHighlight()
   },
   data:function(){
       return{

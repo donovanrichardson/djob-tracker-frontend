@@ -83,8 +83,14 @@ export default {
     }
   },
   methods:{
-    changeRating:function(theRating, job){
+    changeRating: async function(theRating, job){
       console.log(theRating, job);
+        await axios.patch(`http://127.0.0.1:8000/api/job/${job}/`,{rating:theRating},
+        {headers:{
+          Authorization:`JWT ${this.token}`
+        }
+      })
+      await this.refresh()
     },
     theClick: function(){
       this.theColor = ! this.theColor
@@ -99,10 +105,10 @@ export default {
       "url":this.url
       }
       await axios.post("http://127.0.0.1:8000/api/job/",params,
-      {headers:{
-        Authorization:`JWT ${this.token}`
-      }
-    })
+        {headers:{
+          Authorization:`JWT ${this.token}`
+        }
+      })
     this.refresh() //this doesn't get called i think
     console.log('change the jobs')
     },

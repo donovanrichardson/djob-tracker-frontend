@@ -13,8 +13,8 @@ You are **responsible** for scheduling time with your squad to seek approval for
 |  Day | Deliverable | Status
 |---|---| ---|
 |Monday 14| Start basic CRUD on front end | Complete
-|Tuesday 15| add Login to front end | Incomplete
-|Tuesday 15| do Front End tables | Incomplete
+|Tuesday 15| add Login to front end | Complete
+|Tuesday 15| do Front End tables | Complete
 |Wednesday 16| finish MVP CRUD to front end | Incomplete
 |Wednesday 16| Css on front end | Incomplete
 |Thursday 17| Add location filter| Incomplete
@@ -48,13 +48,13 @@ Time frames are also key in the development cycle.  You have limited time to cod
 #### MVP
 | Component | Priority | Estimated Time | Time Invetsted | Actual Time |
 | --- | :---: |  :---: | :---: | :---: |
-|Job Create Read Delete|H|2hr| 2hr | -hr|
+|Job Create Read Delete|H|2hr| 4hr | -hr|
 |Update Job|H|1hr| -hr | -hr|
 |Filter Jobs by Location(Frontend)|M|2hr| -hr | -hr|
-|Rate Locations|M|1hr| -hr | -hr|
-|Locations and Jobs tied to user|H|4hr| -hr | -hr|
-| Front end Login | H | 2hr | -hr | -hr|
-| Front end Table | H | 3hr | -hr | -hr|
+|Rate Locations|M|1hr| 3hr | -hr|
+|Locations and Jobs tied to user|H|4hr| 1hr | -hr|
+| Front end Login | H | 2hr | 1hr | -hr|
+| Front end Table | H | 3hr | 0.5hr | -hr|
 | Front end CSS | H | 6hr | -hr | -hr|
 
 #### PostMVP

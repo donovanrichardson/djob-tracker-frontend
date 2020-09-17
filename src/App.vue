@@ -22,7 +22,7 @@
             <th>Job Title</th>
             <th>Company</th>
             <th>Location</th>
-            <th>Keywords</th>
+            <th class='keywords'>Keywords</th>
             <th>Rating</th>
           </tr>
         </thead>
@@ -31,9 +31,9 @@
             <td>{{job.title}}</td>
             <td>{{job.company}}</td>
             <td>{{job.location}}</td>
-            <td>{{job.keywords}}</td>
-            <td ><Stars :stars="job.rating" v-on:rate="changeRating($event, job.id)"/></td>
-            <td> <button v-on:click="delJob">del</button> </td>
+            <td class='keywords'>{{job.keywords}}</td>
+            <td class='rating'><Stars :stars="job.rating" v-on:rate="changeRating($event, job.id)"/></td>
+            <td> <button v-on:click="delJob">del</button></td>
           </tr>
         </tbody>
       </table>
@@ -183,6 +183,23 @@ table{
 
 th, td{
   padding: 3px;
+}
+
+.keywords{
+  display:none;
+}
+
+.svg-inline--fa.fa-w-18{
+  width:0.75em;
+}
+
+@media(min-width: 600px){
+  .svg-inline--fa.fa-w-18{
+    width:1em;
+  }
+  .keywords{
+    display:table-cell;
+  }
 }
 
 

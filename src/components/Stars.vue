@@ -1,12 +1,12 @@
 <template>
 
-<div>
+<div class="starsdiv">
     <p>{{this.rating}}</p>
-    <button star=0 v-on:click='setRating' :class='{highlighted:highlight[0]}'>S</button>
-    <button star=1 v-on:click='setRating' :class='{highlighted:highlight[1]}'>S</button>
-    <button star=2 v-on:click='setRating' :class='{highlighted:highlight[2]}'>S</button>
-    <button star=3 v-on:click='setRating' :class='{highlighted:highlight[3]}'>S</button>
-    <button star=4 v-on:click='setRating' :class='{highlighted:highlight[4]}'>S</button>
+    <font-awesome-icon star=0 v-on:click='setRating' :class='{highlighted:highlight[0]}' :icon="highlight[0] ? ['fas', 'star']:['far', 'star']" />
+    <font-awesome-icon star=1 v-on:click='setRating' :class='{highlighted:highlight[1]}' :icon="highlight[1] ? ['fas', 'star']:['far', 'star']" />
+    <font-awesome-icon star=2 v-on:click='setRating' :class='{highlighted:highlight[2]}' :icon="highlight[2] ? ['fas', 'star']:['far', 'star']" />
+    <font-awesome-icon star=3 v-on:click='setRating' :class='{highlighted:highlight[3]}' :icon="highlight[3] ? ['fas', 'star']:['far', 'star']" />
+    <font-awesome-icon star=4 v-on:click='setRating' :class='{highlighted:highlight[4]}' :icon="highlight[4] ? ['fas', 'star']:['far', 'star']" />
 </div>
 </template>
 
@@ -19,6 +19,7 @@ export default {
             console.log(this.highlight);
       console.log(this.setHighlight);
       this.setHighlight()
+      console.log(this.highlight);
   },
   data:function(){
       return{
@@ -56,5 +57,10 @@ export default {
 .highlighted{
     color:gold;
     font-weight: bold;
+}
+
+.starsdiv{
+  min-width: 6em;
+  text-align: center;
 }
 </style>

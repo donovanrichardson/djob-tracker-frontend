@@ -7,12 +7,15 @@ import router from "./router";
 // Vue.use(Buefy);
 
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
+import { faTrashAlt, faStar as fasStar} from '@fortawesome/free-solid-svg-icons'
+import {faStar as farStar} from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
-library.add(faUserSecret)
+library.add(faTrashAlt)
+library.add(fasStar)
+library.add(farStar)
 
 Vue.config.productionTip = false;
 

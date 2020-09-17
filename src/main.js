@@ -6,6 +6,14 @@ import router from "./router";
 
 // Vue.use(Buefy);
 
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
+Vue.component('font-awesome-icon', FontAwesomeIcon)
+
+library.add(faUserSecret)
+
 Vue.config.productionTip = false;
 
 new Vue({

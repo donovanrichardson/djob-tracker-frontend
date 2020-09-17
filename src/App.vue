@@ -177,6 +177,14 @@ export default {
   margin: 5px auto;
 }
 
+table{
+  margin: 0 auto;
+}
+
+th, td{
+  padding: 3px;
+}
+
 
 
 

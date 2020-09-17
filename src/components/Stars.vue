@@ -62,5 +62,6 @@ export default {
 .starsdiv{
   min-width: 6em;
   text-align: center;
+  padding:1em;
 }
 </style>

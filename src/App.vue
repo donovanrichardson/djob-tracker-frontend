@@ -33,7 +33,7 @@
             <td>{{job.location}}</td>
             <td class='keywords'>{{job.keywords}}</td>
             <td class='rating'><Stars :stars="job.rating" v-on:rate="changeRating($event, job.id)"/></td>
-            <td> <button v-on:click="delJob">del</button></td>
+            <td class='delete'> <font-awesome-icon class='trash' v-on:click="delJob" :icon="['far', 'trash-alt']">Add Job</font-awesome-icon></td>
           </tr>
         </tbody>
       </table>
@@ -183,6 +183,23 @@ table{
 
 th, td{
   padding: 3px;
+}
+
+.delete{
+  cursor:pointer;
+  margin: 0 1em;
+}
+
+.trash{
+  /* pointer-events: none; */
+  color: red;
+  padding: 1em
+  
+}
+
+.trash *{
+  pointer-events: none;
+  /* can't believe this was necessary to get the event listener to stop targeting the trash can's choldtren. wow */
 }
 
 .keywords{

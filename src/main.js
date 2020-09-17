@@ -7,8 +7,8 @@ import router from "./router";
 // Vue.use(Buefy);
 
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faTrashAlt, faStar as fasStar} from '@fortawesome/free-solid-svg-icons'
-import {faStar as farStar} from '@fortawesome/free-regular-svg-icons'
+import {faStar as fasStar} from '@fortawesome/free-solid-svg-icons'
+import { faTrashAlt, faStar as farStar} from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)

@@ -47,8 +47,11 @@
 // import Footer from './components/Footer'
 import Stars from './components/Stars'
 const axios = require('axios').default
+require('dotenv').config()
+const API = "https://djob-tracker.herokuapp.com/"
+console.log(API, "this is the url");
 const getJobs = async (jwt)=>{
-  const theResponse = await axios.get("http://127.0.0.1:8000/api/job/",{
+  const theResponse = await axios.get(`${API}api/job/`,{
       headers:{
         Authorization:`JWT ${jwt}`
       }
@@ -85,7 +88,7 @@ export default {
   methods:{
     changeRating: async function(theRating, job){
       console.log(theRating, job);
-        await axios.patch(`http://127.0.0.1:8000/api/job/${job}/`,{rating:theRating},
+        await axios.patch(`${API}api/job/${job}/`,{rating:theRating},
         {headers:{
           Authorization:`JWT ${this.token}`
         }
@@ -104,7 +107,7 @@ export default {
       keywords:null,
       "url":this.url
       }
-      await axios.post("http://127.0.0.1:8000/api/job/",params,
+      await axios.post(`${API}api/job/`,params,
         {headers:{
           Authorization:`JWT ${this.token}`
         }
@@ -113,7 +116,7 @@ export default {
     console.log('change the jobs')
     },
     async login(){
-      const response = await axios.post("http://127.0.0.1:8000/auth/users/login/",{username:this.username, password:this.password}
+      const response = await axios.post(`${API}auth/users/login/`,{username:this.username, password:this.password}
     )
     console.log(response);
     this.token = response.data.token
@@ -123,7 +126,7 @@ export default {
     async delJob(event){
       console.log(event);
       const jobId = event.target.parentElement.parentElement.getAttribute('job')
-      const response = await axios.delete(`http://127.0.0.1:8000/api/job/${jobId}/`,
+      const response = await axios.delete(`${API}api/job/${jobId}/`,
       {headers:{
         Authorization:`JWT ${this.token}`
       }})

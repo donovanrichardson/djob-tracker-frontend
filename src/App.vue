@@ -17,7 +17,8 @@
       <label for="contactChoice2">Locations</label>
 
     </div>
-    <div class='form-inputs'>
+    <div v-if="jobsTable">
+      <div class='form-inputs'>
       <Stars id="input-rating" :stars="title"/>
       <div id="manual">
         <input v-model="title" placeholder="title" id="title"/>
@@ -55,7 +56,9 @@
         </tbody>
       </table>
     </div>
-    <div id='location-table-wrapper'>
+    </div>
+    <div v-else>
+          <div id='location-table-wrapper'>
       <table>
         <thead>
           <tr>
@@ -70,6 +73,7 @@
           </tr>
         </tbody>
       </table>
+    </div>
     </div>
   </div>
 

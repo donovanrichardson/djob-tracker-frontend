@@ -196,12 +196,29 @@ export default {
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&display=swap');
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+}
+
+body{
+  font-family: "Varela Round";
+  background: #19401F;
+}
+
+input, button{
+  font-family: 'Open Sans';
+  text-transform: uppercase;
+}
+
+label{
+  color:white;
 }
 
 #nav {
@@ -249,6 +266,9 @@ export default {
 
 table{
   margin: 0 auto;
+  background: #0000007f;
+  border-radius: 5px;
+  color:white;
 }
 
 th, td{

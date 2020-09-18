@@ -6,16 +6,33 @@
       <input v-model="password" type="password" placeholder="password" id="password"/>
       <button v-on:click="login">Login</button>
     </div>
-    <div class='form-inputs'>
-      <Stars :stars="title"/>
-      <input v-model="title" placeholder="title" id="title"/>
-      <input v-model="company" placeholder="company" id="company"/>
-      <input v-model="description" placeholder="description" id="description"/>
-      <input v-model="url" placeholder="url" id="url"/>
-      <input v-model="location" placeholder="location" id="location"/>
-      <button v-on:click="postJob">Add Job</button>
+    <div id='table-radio'>
+
+      <input type="radio" id="job-radio"
+      name="table-radio" value="jobs" v-on:click="jobsTable = true">
+      <label for="contactChoice1">Jobs</label>
+
+      <input type="radio" id="loc-radio"
+      name="table-radio" value="locs" v-on:click="jobsTable = false">
+      <label for="contactChoice2">Locations</label>
+
     </div>
-    <div>
+    <div class='form-inputs'>
+      <Stars id="input-rating" :stars="title"/>
+      <div id="manual">
+        <input v-model="title" placeholder="title" id="title"/>
+        <input v-model="company" placeholder="company" id="company"/>
+        <input v-model="description" placeholder="description" id="description"/>
+        <input v-model="url" placeholder="url" id="url"/>
+        <input v-model="location" placeholder="location" id="location"/>
+        <button v-on:click="postJob">Add Job</button>
+      </div>
+      <div id="auto">
+        <!-- <input v-model="autoUrl" placeholder="autoUrl" id="autoUrl"/> -->
+        <button v-on:click="postJob">Add Job</button>
+      </div>
+    </div>
+    <div id='job-table-wrapper'>
       <table>
         <thead>
           <tr>
@@ -32,8 +49,24 @@
             <td>{{job.company}}</td>
             <td>{{job.location}}</td>
             <td class='keywords'>{{job.keywords}}</td>
-            <td class='rating'><Stars :stars="job.rating" v-on:rate="changeRating($event, job.id)"/></td>
+            <td class='rating'><Stars :stars="job.rating" v-on:rate="changeRating($event, job.id, 'job')"/></td>
             <td class='delete'> <font-awesome-icon class='trash' v-on:click="delJob" :icon="['far', 'trash-alt']">Add Job</font-awesome-icon></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div id='location-table-wrapper'>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Rating</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="loc in locations" :key="loc.id" :loc-id="loc.id">
+            <td>{{loc.name}}</td>
+            <td class='rating'><Stars :stars="loc.rating" v-on:rate="changeRating($event, loc.name, 'location')"/></td>
           </tr>
         </tbody>
       </table>
@@ -60,6 +93,16 @@ const getJobs = async (jwt)=>{
     return theResponse.data
 } 
 
+const getLocs = async (jwt)=>{
+  const theResponse = await axios.get(`${API}api/location/`,{
+      headers:{
+        Authorization:`JWT ${jwt}`
+      }
+    })
+
+    return theResponse.data
+} 
+
 export default {
   name: 'App',
   components: {
@@ -68,7 +111,9 @@ export default {
   },
   async created(){
     const theJobs = await getJobs(this.token)
+    const theLocs = await getLocs(this.token)
     this.jobs = theJobs
+    this.locations = theLocs
 
   },
   data:function(){
@@ -79,16 +124,18 @@ export default {
       description: null,
       url: null,
       jobs:null,
+      locations:null,
       location:null,
       username:'',
       password:'',
       token:'',
+      jobsTable:true,
     }
   },
   methods:{
-    changeRating: async function(theRating, job){
+    changeRating: async function(theRating, job, model){
       console.log(theRating, job);
-        await axios.patch(`${API}api/job/${job}/`,{rating:theRating},
+        await axios.patch(`${API}api/${model}/${job}/`,{rating:theRating},
         {headers:{
           Authorization:`JWT ${this.token}`
         }
@@ -136,6 +183,8 @@ export default {
     },
     async refresh(){
       this.jobs = await getJobs(this.token)
+      this.locations = await getLocs(this.token)
+      // console.log(this.locations)
     },
   }
   
@@ -172,9 +221,26 @@ export default {
   text-align: center;
 }
 
+.form-inputs{
+  display:grid;
+  grid-template:
+    "a a"
+    "b c";
+}
+
 .form-inputs *{
   display:block;
   margin: 5px auto;
+}
+
+#input-rating{
+  grid-area: a;
+}
+#manual{
+  grid-area: b;
+}
+#auto{
+  grid-area: c;
 }
 
 table{

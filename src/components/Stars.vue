@@ -1,7 +1,7 @@
 <template>
 
 <div class="starsdiv">
-    <p>{{this.rating}}</p>
+    <!-- <p>{{this.rating}}</p> -->
     <font-awesome-icon star=0 v-on:click='setRating' :class='{highlighted:highlight[0]}' :icon="highlight[0] ? ['fas', 'star']:['far', 'star']" />
     <font-awesome-icon star=1 v-on:click='setRating' :class='{highlighted:highlight[1]}' :icon="highlight[1] ? ['fas', 'star']:['far', 'star']" />
     <font-awesome-icon star=2 v-on:click='setRating' :class='{highlighted:highlight[2]}' :icon="highlight[2] ? ['fas', 'star']:['far', 'star']" />
@@ -60,8 +60,19 @@ export default {
 }
 
 .starsdiv{
-  min-width: 6em;
+  /* min-width: 4.5em; */
   text-align: center;
   padding:1em;
+  display:flex;
+  flex-direction: column;
 }
+
+@media(min-width:600px){
+  .starsdiv{
+  min-width: 6em;
+  display:block;
+  }
+}
+
+
 </style>

@@ -1,6 +1,8 @@
 <template>
   <!-- <p id="test"><button :class="{red:theColor}" v-on:click="theClick">Text</button></p> -->
-  <div>
+  <div id='root'>
+    <h1 class='heading'>Résumption</h1>
+    <h2 class="heading">a job application tracker</h2>
     <div class="login">
       <input v-model="username" placeholder="username" id="username"/>
       <input v-model="password" type="password" placeholder="password" id="password"/>
@@ -8,18 +10,22 @@
     </div>
     <div id='table-radio'>
 
-      <input type="radio" id="job-radio"
+      <div class="flexbutton">
+        <input type="radio" id="job-radio"
       name="table-radio" value="jobs" v-on:click="jobsTable = true">
-      <label for="contactChoice1">Jobs</label>
+        <label for="contactChoice1">Jobs</label>
+      </div>
 
-      <input type="radio" id="loc-radio"
+      <div class="flexbutton">
+        <input type="radio" id="loc-radio"
       name="table-radio" value="locs" v-on:click="jobsTable = false">
-      <label for="contactChoice2">Locations</label>
+        <label for="contactChoice2">Locations</label>
+      </div>
 
     </div>
     <div v-if="jobsTable">
       <div class='form-inputs'>
-      <Stars id="input-rating" :stars="title"/>
+      <!-- <Stars id="input-rating" :stars="title"/> -->
       <div id="manual">
         <input v-model="title" placeholder="title" id="title"/>
         <input v-model="company" placeholder="company" id="company"/>
@@ -37,8 +43,9 @@
       <table>
         <thead>
           <tr>
-            <th>Job Title</th>
-            <th>Company</th>
+            <th class="desktop-table">Job Title</th>
+            <th class="desktop-table">Company</th>
+            <th class="mobile-table">Job</th>
             <th>Location</th>
             <th class='keywords'>Keywords</th>
             <th>Rating</th>
@@ -46,8 +53,9 @@
         </thead>
         <tbody>
           <tr v-for="job in jobs" :key="job.id" :job="job.id">
-            <td>{{job.title}}</td>
-            <td>{{job.company}}</td>
+            <td class="desktop-table">{{job.title}}</td>
+            <td class="desktop-table">{{job.company}}</td>
+            <td class="mobile-table">{{`${job.title} at ${job.company}`}}</td>
             <td>{{job.location}}</td>
             <td class='keywords'>{{job.keywords}}</td>
             <td class='rating'><Stars :stars="job.rating" v-on:rate="changeRating($event, job.id, 'job')"/></td>
@@ -212,9 +220,52 @@ body{
   background: #19401F;
 }
 
-input, button{
+h1{
+  font-size: xxx-large;
+}
+
+#table-radio{
+  /* text-align: center; */
+  display:flex;
+  justify-content: center;
+}
+
+.flexbutton{
+  display: flex;
+  flex-direction: column;
+  margin: .5em;
+}
+
+#root > div{
+  margin: 2em 0;
+}
+
+.heading{
+  margin:0; 
+  text-align: center;
+}
+
+button, h1,h2{
   font-family: 'Open Sans';
-  text-transform: uppercase;
+  font-variant-caps: small-caps; 
+  /* change login to regular */
+}
+
+.login{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login > input{
+  width: 150px;
+  margin: 1em;
+}
+
+.login > button{
+  width: 125px;
+  font-size: 1.15em;
+  border-radius: 5px;
 }
 
 label{
@@ -271,6 +322,14 @@ table{
   color:white;
 }
 
+.desktop-table{
+  display: none;
+}
+
+.mobile-table{
+ display: table-cell;
+}
+
 th, td{
   padding: 3px;
 }
@@ -307,6 +366,15 @@ th, td{
   .keywords{
     display:table-cell;
   }
+
+  .desktop-table{
+    display: table-cell;
+  }
+
+  .mobile-table{
+  display: none;
+  }
+
 }
 
 

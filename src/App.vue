@@ -1,87 +1,93 @@
 <template>
   <!-- <p id="test"><button :class="{red:theColor}" v-on:click="theClick">Text</button></p> -->
   <div id='root'>
-    <h1 class='heading'>Résumption</h1>
-    <h2 class="heading">a job application tracker</h2>
-    <div class="login">
-      <input v-model="username" placeholder="username" id="username"/>
-      <input v-model="password" type="password" placeholder="password" id="password"/>
-      <button v-on:click="login">Login</button>
+    <div v-if="!token">
+      <h1 class='heading'>Résumption</h1>
+      <h2 class="heading">a job application tracker</h2>
+      <div class="login">
+        <input v-model="username" placeholder="username" id="username"/>
+        <input v-model="password" type="password" placeholder="password" id="password"/>
+        <button v-on:click="login">Login</button>
+      </div>
     </div>
-    <div id='table-radio'>
 
-      <div class="flexbutton">
-        <input type="radio" id="job-radio"
-      name="table-radio" value="jobs" v-on:click="jobsTable = true">
-        <label for="contactChoice1">Jobs</label>
-      </div>
+    <div v-if="token">
 
-      <div class="flexbutton">
-        <input type="radio" id="loc-radio"
-      name="table-radio" value="locs" v-on:click="jobsTable = false">
-        <label for="contactChoice2">Locations</label>
-      </div>
+      <div id='table-radio'>
 
-    </div>
-    <div v-if="jobsTable">
-      <div class='form-inputs'>
-      <!-- <Stars id="input-rating" :stars="title"/> -->
-      <div id="manual">
-        <input v-model="title" placeholder="title" id="title"/>
-        <input v-model="company" placeholder="company" id="company"/>
-        <input v-model="description" placeholder="description" id="description"/>
-        <input v-model="url" placeholder="url" id="url"/>
-        <input v-model="location" placeholder="location" id="location"/>
-        <button v-on:click="postJob">Add Job</button>
+        <div class="flexbutton">
+          <input type="radio" id="job-radio"
+        name="table-radio" value="jobs" v-on:click="jobsTable = true">
+          <label for="contactChoice1">Jobs</label>
+        </div>
+
+        <div class="flexbutton">
+          <input type="radio" id="loc-radio"
+        name="table-radio" value="locs" v-on:click="jobsTable = false">
+          <label for="contactChoice2">Locations</label>
+        </div>
+
       </div>
-      <div id="auto">
-        <!-- <input v-model="autoUrl" placeholder="autoUrl" id="autoUrl"/> -->
-        <button v-on:click="postJob">Add Job</button>
+      <div v-if="jobsTable">
+        <div class='form-inputs'>
+        <!-- <Stars id="input-rating" :stars="title"/> -->
+        <div id="manual">
+          <input v-model="title" placeholder="title" id="title"/>
+          <input v-model="company" placeholder="company" id="company"/>
+          <input v-model="description" placeholder="description" id="description"/>
+          <input v-model="url" placeholder="url" id="url"/>
+          <input v-model="location" placeholder="location" id="location"/>
+          <button v-on:click="postJob">Add Job</button>
+        </div>
+        <div id="auto">
+          <!-- <input v-model="autoUrl" placeholder="autoUrl" id="autoUrl"/> -->
+          <button v-on:click="postJob">Add Job</button>
+        </div>
       </div>
-    </div>
-    <div id='job-table-wrapper'>
-      <table>
-        <thead>
-          <tr>
-            <th class="desktop-table">Job Title</th>
-            <th class="desktop-table">Company</th>
-            <th class="mobile-table">Job</th>
-            <th>Location</th>
-            <th class='keywords'>Keywords</th>
-            <th>Rating</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="job in jobs" :key="job.id" :job="job.id">
-            <td class="desktop-table">{{job.title}}</td>
-            <td class="desktop-table">{{job.company}}</td>
-            <td class="mobile-table">{{`${job.title} at ${job.company}`}}</td>
-            <td>{{job.location}}</td>
-            <td class='keywords'>{{job.keywords}}</td>
-            <td class='rating'><Stars :stars="job.rating" v-on:rate="changeRating($event, job.id, 'job')"/></td>
-            <td class='delete'> <font-awesome-icon class='trash' v-on:click="delJob" :icon="['far', 'trash-alt']">Add Job</font-awesome-icon></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    </div>
-    <div v-else>
-          <div id='location-table-wrapper'>
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Rating</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="loc in locations" :key="loc.id" :loc-id="loc.id">
-            <td>{{loc.name}}</td>
-            <td class='rating'><Stars :stars="loc.rating" v-on:rate="changeRating($event, loc.name, 'location')"/></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+      <div id='job-table-wrapper'>
+        <table>
+          <thead>
+            <tr>
+              <th class="desktop-table">Job Title</th>
+              <th class="desktop-table">Company</th>
+              <th class="mobile-table">Job</th>
+              <th>Location</th>
+              <th class='keywords'>Keywords</th>
+              <th>Rating</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="job in jobs" :key="job.id" :job="job.id">
+              <td class="desktop-table">{{job.title}}</td>
+              <td class="desktop-table">{{job.company}}</td>
+              <td class="mobile-table">{{`${job.title} at ${job.company}`}}</td>
+              <td>{{job.location}}</td>
+              <td class='keywords'>{{job.keywords}}</td>
+              <td class='rating'><Stars :stars="job.rating" v-on:rate="changeRating($event, job.id, 'job')"/></td>
+              <td class='delete'> <font-awesome-icon class='trash' v-on:click="delJob" :icon="['far', 'trash-alt']">Add Job</font-awesome-icon></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      </div>
+      <div v-else>
+        <div id='location-table-wrapper'>
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Rating</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="loc in locations" :key="loc.id" :loc-id="loc.id">
+              <td>{{loc.name}}</td>
+              <td class='rating'><Stars :stars="loc.rating" v-on:rate="changeRating($event, loc.name, 'location')"/></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      </div>
     </div>
   </div>
 

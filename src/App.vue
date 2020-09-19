@@ -17,10 +17,10 @@
           <p>Résumption</p>
         </div>
         <div id='right'>
-          <p>☰</p>
-          <p class="hideable">About</p>
-          <p class="hideable">LinkedIn</p>
-          <div class="behind-ham">
+          <p id='hamburger' v-on:click="hamburgerClick">☰</p>
+          <p class="non-ham">About</p>
+          <p class="non-ham">LinkedIn</p>
+          <div :class="hamburgerDetails ? 'behind-ham-show' : 'behind-ham' ">
             <p class="hideable">About</p>
             <p class="hideable">LinkedIn</p>
           </div>
@@ -162,9 +162,13 @@ export default {
       password:'',
       token:'',
       jobsTable:true,
+      hamburgerDetails:false,
     }
   },
   methods:{
+    hamburgerClick: function(){
+      this.hamburgerDetails = !this.hamburgerDetails
+    },
     changeRating: async function(theRating, job, model){
       console.log(theRating, job);
         await axios.patch(`${API}api/${model}/${job}/`,{rating:theRating},
@@ -240,8 +244,14 @@ body{
   background: #19401F;
 }
 
+
 h1{
   font-size: xxx-large;
+}
+
+#hamburger{
+  font-size: 1.5em;
+  cursor:pointer;
 }
 
 #table-radio{
@@ -333,7 +343,11 @@ nav{
 } */
 
 .behind-ham{
-  display: flex;
+   display: none;
+}
+
+.behind-ham-show{
+   display: flex;  
   flex-direction: column;
   justify-content: space-between;
   position: absolute;
@@ -343,6 +357,7 @@ nav{
   border: 3px solid black;
   border-radius:10px;
   top: 6em;
+  
 }
 
 .behind-ham * {
@@ -426,6 +441,10 @@ th, td{
   width:0.75em;
 }
 
+.non-ham{
+  display:none;
+}
+
 @media(min-width: 600px){
   .svg-inline--fa.fa-w-18{
     width:1em;
@@ -440,6 +459,12 @@ th, td{
 
   .mobile-table{
   display: none;
+  }
+  .non-ham{
+  display:block;
+}
+  .behind-ham, .behind-ham-show{
+    display:none;
   }
 
 }

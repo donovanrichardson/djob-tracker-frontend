@@ -1,7 +1,7 @@
 <template>
   <!-- <p id="test"><button :class="{red:theColor}" v-on:click="theClick">Text</button></p> -->
   <div id='root'>
-    <div v-if="!token">
+    <div id="logged-out" v-if="!token">
       <h1 class='heading'>Résumption</h1>
       <h2 class="heading">a job application tracker</h2>
       <div class="login">
@@ -11,7 +11,21 @@
       </div>
     </div>
 
-    <div v-if="token">
+    <div id="logged-in" v-if="token">
+      <nav id='resumption'>
+        <div id='left'>
+          <p>Résumption</p>
+        </div>
+        <div id='right'>
+          <p>☰</p>
+          <p class="hideable">About</p>
+          <p class="hideable">LinkedIn</p>
+          <div class="behind-ham">
+            <p class="hideable">About</p>
+            <p class="hideable">LinkedIn</p>
+          </div>
+        </div>
+      </nav>
 
       <div id='table-radio'>
 
@@ -289,6 +303,53 @@ label{
 
 #nav a.router-link-exact-active {
   color: #42b983;
+}
+
+nav{
+  color:white;
+  background: #0000007f;
+  display:flex;
+  justify-content: space-between;
+}
+
+#left{
+  margin: 0 5px;
+}
+
+#right{
+  display: flex;
+  justify-content: space-between;
+}
+/* #right{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: absolute;
+  right: 0;
+  color:black;
+  background: rgb(156, 209, 226); 
+  border: 3px solid black;
+  border-radius:10px;
+} */
+
+.behind-ham{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: absolute;
+  right: 0;
+  color:black;
+  background: rgb(156, 209, 226); 
+  border: 3px solid black;
+  border-radius:10px;
+  top: 6em;
+}
+
+.behind-ham * {
+    margin: 5px;
+}
+#right > *{
+  margin: auto 5px;
 }
 
 .red{

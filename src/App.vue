@@ -54,8 +54,8 @@
           <button v-on:click="postJob">Add Job</button>
         </div>
         <div id="auto">
-          <!-- <input v-model="autoUrl" placeholder="autoUrl" id="autoUrl"/> -->
-          <button v-on:click="postJob">Add Job</button>
+          <input v-model="autoUrl" placeholder="autoUrl" id="autoUrl"/>
+          <button v-on:click="autopopulate">Add from URL</button>
         </div>
       </div>
       <div id='job-table-wrapper'>
@@ -112,6 +112,7 @@
 // import Footer from './components/Footer'
 import Stars from './components/Stars'
 const axios = require('axios').default
+const {autofill} = require('./autofill')
 require('dotenv').config()
 const API = "https://djob-tracker.herokuapp.com/"
 console.log(API, "this is the url");
@@ -155,6 +156,7 @@ export default {
       company: null,
       description: null,
       url: null,
+      autoUrl: null,
       jobs:null,
       locations:null,
       location:null,
@@ -166,6 +168,14 @@ export default {
     }
   },
   methods:{
+    autopopulate: async function(){
+      const fields = await autofill(this.autoUrl)
+      this.title = fields.name
+      this.company = fields.company
+      this.description = fields.desc
+      this.url = fields.url
+      this.location = fields.location
+    },
     hamburgerClick: function(){
       this.hamburgerDetails = !this.hamburgerDetails
     },

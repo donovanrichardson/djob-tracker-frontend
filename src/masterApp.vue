@@ -18,7 +18,7 @@
         </div>
         <div id='right'>
           <p id='hamburger' v-on:click="hamburgerClick">☰</p>
-          <p class="non-ham"><a href="/about">About</a></p>
+          <p class="non-ham">About</p>
           <p class="non-ham">LinkedIn</p>
           <div :class="hamburgerDetails ? 'behind-ham-show' : 'behind-ham' ">
             <p class="hideable">About</p>
@@ -110,9 +110,9 @@
 <script>
 // import Header from './components/Header'
 // import Footer from './components/Footer'
-import Stars from '../components/Stars'
+import Stars from './components/Stars'
 const axios = require('axios').default
-const {autofill} = require('../autofill')
+const {autofill} = require('./autofill')
 require('dotenv').config()
 const API = "https://djob-tracker.herokuapp.com/"
 console.log(API, "this is the url");
@@ -137,7 +137,7 @@ const getLocs = async (jwt)=>{
 } 
 
 export default {
-  name: 'Home',
+  name: 'App',
   components: {
     Stars,
   },
@@ -472,7 +472,7 @@ th, td{
   .non-ham{
   display:block;
 }
-  .behind-ham, .behind-ham-show, #hamburger{
+  .behind-ham, .behind-ham-show{
     display:none;
   }
 

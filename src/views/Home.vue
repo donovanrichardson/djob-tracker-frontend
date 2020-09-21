@@ -18,7 +18,7 @@
         </div>
         <div id='right'>
           <p id='hamburger' v-on:click="hamburgerClick">☰</p>
-          <p class="non-ham"><a href="/about">About</a></p>
+          <p class="non-ham"><router-link to="/about">About</router-link></p>
           <p class="non-ham">LinkedIn</p>
           <div :class="hamburgerDetails ? 'behind-ham-show' : 'behind-ham' ">
             <p class="hideable">About</p>

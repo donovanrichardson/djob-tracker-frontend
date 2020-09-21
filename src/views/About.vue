@@ -9,12 +9,12 @@
           <p class="non-ham"><a href="../"> Home </a></p>
           <p class="non-ham"><a href=""> <strong>About</strong> </a></p>
           <p class="non-ham" v-on:click='logout'>Logout</p>
-          <p class="non-ham">LinkedIn</p>
+          <p class="hideable"> <a href="https://www.linkedin.com/in/donovan-richardson/">LinkedIn</a> </p>
           <div :class="hamburgerDetails ? 'behind-ham-show' : 'behind-ham' ">
             <p class="non-ham"><a href="../"> Home </a></p>
             <p class="hideable">About</p>
             <p class="non-ham" v-on:click='logout'>Logout</p>
-            <p class="hideable">LinkedIn</p>
+            <p class="hideable"> <a href="https://www.linkedin.com/in/donovan-richardson/">LinkedIn</a> </p>
           </div>
         </div>
       </nav>

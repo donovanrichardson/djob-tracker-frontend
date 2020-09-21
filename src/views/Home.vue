@@ -27,9 +27,11 @@
         <div id='right'>
           <p id='hamburger' v-on:click="hamburgerClick">☰</p>
           <p class="non-ham"><router-link to="/about">About</router-link></p>
+          <p class="non-ham" v-on:click='logout'>Logout</p>
           <p class="non-ham">LinkedIn</p>
           <div :class="hamburgerDetails ? 'behind-ham-show' : 'behind-ham' ">
-            <p class="hideable">About</p>
+             <p class="hideable"><router-link to="/about">About</router-link></p>
+             <p class="non-ham" v-on:click='logout'>Logout</p>
             <p class="hideable">LinkedIn</p>
           </div>
         </div>
@@ -186,6 +188,9 @@ export default {
     }
   },
   methods:{
+    logout: function(){
+      this.token = null;
+    },
     register: async function(){
       if (this.registerPassword1.length < 8){
         alert("password must be at least 8 characters")

@@ -6,10 +6,14 @@
         </div>
         <div id='right'>
           <p id='hamburger' v-on:click="hamburgerClick">☰</p>
+          <p class="non-ham"><a href="../"> Home </a></p>
           <p class="non-ham"><a href=""> <strong>About</strong> </a></p>
+          <p class="non-ham" v-on:click='logout'>Logout</p>
           <p class="non-ham">LinkedIn</p>
           <div :class="hamburgerDetails ? 'behind-ham-show' : 'behind-ham' ">
+            <p class="non-ham"><a href="../"> Home </a></p>
             <p class="hideable">About</p>
+            <p class="non-ham" v-on:click='logout'>Logout</p>
             <p class="hideable">LinkedIn</p>
           </div>
         </div>

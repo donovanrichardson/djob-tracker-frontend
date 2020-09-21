@@ -9,6 +9,14 @@
         <input v-model="password" type="password" placeholder="password" id="password"/>
         <button v-on:click="login">Login</button>
       </div>
+
+      <div class=login>
+        <input v-model="registerEmail" placeholder="email" id="registeremail"/>
+        <input v-model="registerUsername" placeholder="username" id="registerusername"/>
+        <input v-model="registerPassword1" type="password" placeholder="password" id="registerpassword1"/>
+        <input v-model="registerPassword2" type="password" placeholder="password again" id="registerpassword2"/>
+        <button v-on:click="register">Register</button>
+      </div>
     </div>
 
     <div id="logged-in" v-if="token">
@@ -164,9 +172,33 @@ export default {
       token:'',
       jobsTable:true,
       hamburgerDetails:false,
+      registerEmail:null,
+      registerUsername:null,
+      registerPassword1:null,
+      registerPassword2:null,
     }
   },
   methods:{
+    register: async function(){
+      if (this.registerPassword1.length < 8){
+        alert("password must be at least 8 characters")
+      } else if (this.registerPassword1 === this.registerPassword2){
+        try{
+          await axios.post(`${API}auth/users/register/`,{
+          username:this.registerUsername,
+          email:this.registerEmail,
+          password:this.registerPassword1
+          }
+      )
+        }catch(e){
+          alert('error')
+        }
+      alert('user created')
+      }else{
+        alert("passwords must match")
+      }
+
+    },
     autopopulate: async function(){
       const fields = await autofill(this.autoUrl)
       this.title = fields.name
@@ -294,6 +326,8 @@ button, h1,h2{
   display: flex;
   flex-direction: column;
   align-items: center;
+margin: 3em;
+
 }
 
 .login > input{

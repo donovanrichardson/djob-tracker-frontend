@@ -192,6 +192,11 @@ export default {
       )
         }catch(e){
           alert('error')
+        }finally{
+          this.registerUsername = null;
+          this.registerEmail = null;
+          this.registerPassword1 = null;
+          this.registerPassword2 = null;
         }
       alert('user created')
       }else{
@@ -244,6 +249,8 @@ export default {
     )
     console.log(response);
     this.token = response.data.token
+    this.username = null;
+    this.password = null;
     this.refresh()
 
     },

@@ -15,11 +15,11 @@ You are **responsible** for scheduling time with your squad to seek approval for
 |Monday 14| Start basic CRUD on front end | Complete
 |Tuesday 15| add Login to front end | Complete
 |Tuesday 15| do Front End tables | Complete
-|Wednesday 16| finish MVP CRUD to front end | Incomplete
-|Wednesday 16| Css on front end | Incomplete
+|Wednesday 16| finish MVP CRUD to front end | Complete
+|Wednesday 16| Css on front end | Complete
 |Thursday 17| Add location filter| Incomplete
-|Thursday 17| Add location rating | Incomplete
-|Friday 18| *Debugging* finish MVP | Incomplete
+|Thursday 17| Add location rating | Complete
+|Friday 18| *Debugging* finish MVP | Complete
 |Weekend (19,20)| Add Indeed and Linkedin integration| Incomplete
 |Monday 21| Add Sublocations to front end| Incomplete
 
@@ -48,14 +48,14 @@ Time frames are also key in the development cycle.  You have limited time to cod
 #### MVP
 | Component | Priority | Estimated Time | Time Invetsted | Actual Time |
 | --- | :---: |  :---: | :---: | :---: |
-|Job Create Read Delete|H|2hr| 4hr | -hr|
-|Update Job|H|1hr| -hr | -hr|
+|Job Create Read Delete|H|2hr| 4hr | 4hr|
+|Update Job|H|1hr| 1hr | -hr|
 |Filter Jobs by Location(Frontend)|M|2hr| -hr | -hr|
-|Rate Locations|M|1hr| 3hr | -hr|
-|Locations and Jobs tied to user|H|4hr| 1hr | -hr|
-| Front end Login | H | 2hr | 1hr | -hr|
-| Front end Table | H | 3hr | 0.5hr | -hr|
-| Front end CSS | H | 6hr | -hr | -hr|
+|Rate Locations|M|1hr| 4hr | -hr|
+|Locations and Jobs tied to user|H|4hr| 2hr | -hr|
+| Front end Login | H | 2hr | 3hr | -hr|
+| Front end Table | H | 3hr | 1hr | -hr|
+| Front end CSS | H | 6hr | 8hr | -hr|
 
 #### PostMVP
 | Component | Priority | Estimated Time | Time Invetsted | Actual Time |
@@ -81,10 +81,6 @@ function reverse(string) {
 
 ## Issues and Resolutions
  Use this section to list of all major issues encountered and their resolution.
-
-#### SAMPLE.....
-**ERROR**: app.js:34 Uncaught SyntaxError: Unexpected identifier                                
-**RESOLUTION**: Missing comma after first object in sources {} object
 
 ## Previous Project Worksheet
  - [Readme's](https://github.com/jkeohan/fewd-class-repo/tree/master/final-project-worksheet/project-worksheet-examples)

@@ -125,23 +125,32 @@ require('dotenv').config()
 const API = "https://djob-tracker.herokuapp.com/"
 console.log(API, "this is the url");
 const getJobs = async (jwt)=>{
-  const theResponse = await axios.get(`${API}api/job/`,{
+  try{
+      const theResponse = await axios.get(`${API}api/job/`,{
       headers:{
         Authorization:`JWT ${jwt}`
       }
     })
+    console.log(theResponse);
 
     return theResponse.data
+  }catch(e){
+    console.log(e.isAxiosError,e.config,e.request,e.response);
+  }
+
 } 
 
 const getLocs = async (jwt)=>{
-  const theResponse = await axios.get(`${API}api/location/`,{
+  try{
+      const theResponse = await axios.get(`${API}api/location/`,{
       headers:{
         Authorization:`JWT ${jwt}`
       }
     })
-
     return theResponse.data
+  }catch(e){
+    console.log("error",Object.keys(e));
+  }
 } 
 
 export default {
@@ -150,10 +159,8 @@ export default {
     Stars,
   },
   async created(){
-    const theJobs = await getJobs(this.token)
-    const theLocs = await getLocs(this.token)
-    this.jobs = theJobs
-    this.locations = theLocs
+    this.token = window.sessionStorage.getItem('token')
+    this.refresh()
 
   },
   data:function(){
@@ -217,12 +224,20 @@ export default {
     },
     changeRating: async function(theRating, job, model){
       console.log(theRating, job);
-        await axios.patch(`${API}api/${model}/${job}/`,{rating:theRating},
+      try{
+                await axios.patch(`${API}api/${model}/${job}/`,{rating:theRating},
         {headers:{
           Authorization:`JWT ${this.token}`
         }
       })
       await this.refresh()
+      }catch(e){
+        if(e.response.status == 401){
+          this.token = null;
+          alert("session expired. log back in")
+        }
+      }
+
     },
     theClick: function(){
       this.theColor = ! this.theColor
@@ -236,12 +251,21 @@ export default {
       keywords:null,
       "url":this.url
       }
-      await axios.post(`${API}api/job/`,params,
+
+
+          try{
+                      await axios.post(`${API}api/job/`,params,
         {headers:{
           Authorization:`JWT ${this.token}`
         }
       })
     this.refresh() //this doesn't get called i think
+      }catch(e){
+        if(e.response.status == 401){
+          this.token = null;
+                    alert("session expired. log back in")
+        }
+      }
     console.log('change the jobs')
     },
     async login(){
@@ -249,6 +273,7 @@ export default {
     )
     console.log(response);
     this.token = response.data.token
+    window.sessionStorage.setItem('token', this.token)
     this.username = null;
     this.password = null;
     this.refresh()
@@ -257,18 +282,31 @@ export default {
     async delJob(event){
       console.log(event);
       const jobId = event.target.parentElement.parentElement.getAttribute('job')
-      const response = await axios.delete(`${API}api/job/${jobId}/`,
+      try{const response = await axios.delete(`${API}api/job/${jobId}/`,
       {headers:{
         Authorization:`JWT ${this.token}`
       }})
       console.log(response.data);
-      this.refresh()
+      this.refresh()}catch(e){
+        if(e.response.status == 401){
+          this.token = null;
+                    alert("session expired. log back in")
+        }
+      }
 
     },
     async refresh(){
-      this.jobs = await getJobs(this.token)
-      this.locations = await getLocs(this.token)
+      if(this.token){
+        try{
+                  this.jobs = await getJobs(this.token)
+        this.locations = await getLocs(this.token)
+        }catch(e){
+          if(e.response.status == 401){
+            this.token=null;
+          }
+        }
       // console.log(this.locations)
+      }
     },
   }
   

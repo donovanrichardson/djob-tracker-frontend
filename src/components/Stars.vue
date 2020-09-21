@@ -32,11 +32,9 @@ export default {
           console.log("sample method");
       },
       setRating:function(event){
-        //   console.log(event);
           this.rating = Number(event.target.getAttribute("star")) + 1
           this.setHighlight()
           this.$emit("rate", this.rating)
-        //   console.log(this.rating);
       },
       setHighlight:function(){
           let i = 0

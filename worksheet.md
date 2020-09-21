@@ -71,12 +71,13 @@ Cheerio
 
 ## Code Snippet
 
-Use this section to include a brief code snippet of functionality that you are proud of an a brief description  
-
-```
-function reverse(string) {
-	// here is the code to reverse a string of text
-}
+Below is a method I use in `Stars.vue` to send a custom "rate" event to the parent component. It highlights all the clicked stars up to that star (i.e. if you click star 5, stars 1-5 will be highlighted), and sends the rate event which tells the parent component to make a patch request that changes the rating of a job or location.
+```js
+      setRating:function(event){
+          this.rating = Number(event.target.getAttribute("star")) + 1
+          this.setHighlight()
+          this.$emit("rate", this.rating)
+      }
 ```
 
 ## Issues and Resolutions

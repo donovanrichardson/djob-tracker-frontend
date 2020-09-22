@@ -31,7 +31,7 @@
           <p class="hideable"> <a href="https://www.linkedin.com/in/donovan-richardson/">LinkedIn</a> </p>
           <div :class="hamburgerDetails ? 'behind-ham-show' : 'behind-ham' ">
              <p class="hideable"><router-link to="/about">About</router-link></p>
-             <p class="non-ham" v-on:click='logout'>Logout</p>
+             <p class="hideable" v-on:click='logout'>Logout</p>
              <p class="hideable"> <a href="https://www.linkedin.com/in/donovan-richardson/">LinkedIn</a> </p>
           </div>
         </div>
@@ -63,10 +63,10 @@
           <input v-model="location" placeholder="location" id="location"/>
           <button v-on:click="postJob">Add Job</button>
         </div>
-        <div id="auto">
+        <!-- <div id="auto">
           <input v-model="autoUrl" placeholder="autoUrl" id="autoUrl"/>
           <button v-on:click="autopopulate">Add from URL</button>
-        </div>
+        </div> -->
       </div>
       <div id='job-table-wrapper'>
         <table>
@@ -125,7 +125,7 @@ const axios = require('axios').default
 const {autofill} = require('../autofill')
 require('dotenv').config()
 const API = "https://djob-tracker.herokuapp.com/"
-console.log(API, "this is the url");
+// console.log(API, "this is the url");
 const getJobs = async (jwt)=>{
   try{
       const theResponse = await axios.get(`${API}api/job/`,{
@@ -133,11 +133,11 @@ const getJobs = async (jwt)=>{
         Authorization:`JWT ${jwt}`
       }
     })
-    console.log(theResponse);
+    // console.log(theResponse);
 
     return theResponse.data
   }catch(e){
-    console.log(e.isAxiosError,e.config,e.request,e.response);
+    // console.log(e.isAxiosError,e.config,e.request,e.response);
   }
 
 } 
@@ -151,7 +151,7 @@ const getLocs = async (jwt)=>{
     })
     return theResponse.data
   }catch(e){
-    console.log("error",Object.keys(e));
+    // console.log("error",Object.keys(e));
   }
 } 
 
@@ -228,7 +228,7 @@ export default {
       this.hamburgerDetails = !this.hamburgerDetails
     },
     changeRating: async function(theRating, job, model){
-      console.log(theRating, job);
+      // console.log(theRating, job);
       try{
                 await axios.patch(`${API}api/${model}/${job}/`,{rating:theRating},
         {headers:{
@@ -271,12 +271,12 @@ export default {
                     alert("session expired. log back in")
         }
       }
-    console.log('change the jobs')
+    // console.log('change the jobs')
     },
     async login(){
       const response = await axios.post(`${API}auth/users/login/`,{username:this.username, password:this.password}
     )
-    console.log(response);
+    // console.log(response);
     this.token = response.data.token
     window.sessionStorage.setItem('token', this.token)
     this.username = null;
@@ -285,13 +285,13 @@ export default {
 
     },
     async delJob(event){
-      console.log(event);
+      // console.log(event);
       const jobId = event.target.parentElement.parentElement.getAttribute('job')
       try{const response = await axios.delete(`${API}api/job/${jobId}/`,
       {headers:{
         Authorization:`JWT ${this.token}`
       }})
-      console.log(response.data);
+      // console.log(response.data);
       this.refresh()}catch(e){
         if(e.response.status == 401){
           this.token = null;
@@ -364,6 +364,7 @@ h1{
 .heading{
   margin:0; 
   text-align: center;
+  color:white;
 }
 
 button, h1,h2{
@@ -399,10 +400,10 @@ label{
   padding: 30px;
 }
 
-#nav a {
+/* a {
   font-weight: bold;
   color: #2c3e50;
-}
+} */
 
 #nav a.router-link-exact-active {
   color: #42b983;
@@ -423,6 +424,13 @@ nav{
   display: flex;
   justify-content: space-between;
 }
+
+#right p, #right a, #right a:visited{
+  cursor:pointer;
+  color:white;
+  text-decoration: underline;
+}
+
 /* #right{
   display: flex;
   flex-direction: column;
@@ -469,10 +477,10 @@ nav{
 }
 
 .form-inputs{
-  display:grid;
+  /* display:grid;
   grid-template:
     "a a"
-    "b c";
+    "b c"; */
 }
 
 .form-inputs *{

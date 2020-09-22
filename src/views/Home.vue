@@ -287,7 +287,9 @@ export default {
     async delJob(event){
       // console.log(event);
       const jobId = event.target.parentElement.parentElement.getAttribute('job')
-      try{const response = await axios.delete(`${API}api/job/${jobId}/`,
+      try{
+        // const response = 
+        await axios.delete(`${API}api/job/${jobId}/`,
       {headers:{
         Authorization:`JWT ${this.token}`
       }})

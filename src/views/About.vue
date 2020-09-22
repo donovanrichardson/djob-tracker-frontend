@@ -25,12 +25,15 @@
 </template>
 
 <script>
-
 export default {
   name: 'About',
   components: {
 
-  }
+  },
+  beforeMount(){
+  document.title="About Résumption"
+}
+
   
 }
 </script>

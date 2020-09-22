@@ -165,6 +165,9 @@ export default {
     this.refresh()
 
   },
+  async beforeMount(){
+    document.title = "Résumption"
+  },
   data:function(){
     return {
       theColor: false,

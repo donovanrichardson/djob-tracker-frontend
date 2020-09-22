@@ -9,12 +9,18 @@ Vue.use(VueRouter)
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
+    // meta:{
+    //   title: "Résumption"
+    // }
   },
   {
     path: '/about',
     name: 'About',
-    component: About
+    component: About,
+    // meta:{
+    //   title: "About Résumption"
+    // }
   },
 ]
 
